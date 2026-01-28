@@ -157,3 +157,9 @@ if __name__ == "__main__":
     except Exception as e:
         print("Error:", e)
         speak("An unexpected error occurred.")
+
+
+"""Problems faced during this project 
+-> Some major modules like speech_recognition and pyttsx3 might not work 
+"""
+
