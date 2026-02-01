@@ -18,7 +18,7 @@ import pywhatkit
 import sys
 import time
 
-# ---------------- CONFIG ----------------
+# ---------------- CONFIG ----------------#
 WAKE_WORD = "jarvis"
 LANG = "en"
 VOICE_RATE = 150
@@ -26,7 +26,7 @@ VOICE_VOLUME = 1.0
 NOTES_FILE = "notes.txt"
 LOG_FILE = "command_log.txt"
 MAX_RETRIES = 2
-# ----------------------------------------
+# ----------------------------------------#
 
 recognizer = sr.Recognizer()
 tts = pyttsx3.init()
@@ -37,7 +37,7 @@ voices = tts.getProperty("voices")
 if voices:
     tts.setProperty("voice", voices[0].id)
 
-# -------------- CORE UTILS ----------------
+# -------------- CORE UTILS ----------------#
 
 def speak(text):
     print("Jarvis:", text)
@@ -60,7 +60,7 @@ def listen(timeout=None, phrase_time_limit=None):
     except:
         return None
 
-# -------------- COMMANDS ------------------
+# -------------- COMMANDS ------------------#
 
 def tell_time():
     speak(datetime.datetime.now().strftime("The time is %I:%M %p"))
@@ -100,7 +100,7 @@ def show_help():
         "I can tell time, date, open websites, search Wikipedia, play YouTube songs, and take notes."
     )
 
-# ----------- COMMAND PARSER ----------------
+# ----------- COMMAND PARSER ----------------#
 
 def parse_command(command):
     log_command(command)
@@ -125,7 +125,7 @@ def parse_command(command):
     else:
         speak("I did not understand that command.")
 
-# -------------- MAIN LOOP ------------------
+# -------------- MAIN LOOP ------------------#
 
 def main():
     speak("Jarvis is online. Say jarvis to wake me.")
@@ -147,7 +147,7 @@ def main():
 
         time.sleep(0.3)
 
-# -------------- ENTRY ---------------------
+# -------------- ENTRY ---------------------#
 
 if __name__ == "__main__":
     try:
@@ -162,4 +162,5 @@ if __name__ == "__main__":
 """Problems faced during this project 
 -> Some major modules like speech_recognition and pyttsx3 might not work 
 """
+
 
