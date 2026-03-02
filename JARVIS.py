@@ -29,7 +29,7 @@ MAX_RETRIES = 2
 # ----------------------------------------#
 
 recognizer = sr.Recognizer()
-tts = pyttsx3.init()
+tts = pyttsx3.init(driverName='sapi5')
 tts.setProperty("rate", VOICE_RATE)
 tts.setProperty("volume", VOICE_VOLUME)
 
@@ -43,6 +43,7 @@ def speak(text):
     print("Jarvis:", text)
     tts.say(text)
     tts.runAndWait()
+    time.sleep(0.5)   # ← add this line
 
 def log_command(cmd):
     with open(LOG_FILE, "a", encoding="utf-8") as f:
@@ -131,19 +132,34 @@ def main():
     speak("Jarvis is online. Say jarvis to wake me.")
 
     while True:
-        text = listen(timeout=5, phrase_time_limit=4)
-        if text and WAKE_WORD in text:
-            speak("Yes?")
-            retries = 0
+        text = listen(timeout=5)
 
+        if not text:
+            continue   # nothing heard, restart loop safely
+
+        # Allow global exit anytime
+        if any(x in text for x in ["exit", "quit", "shutdown"]):
+            speak("Shutting down.")
+            break
+
+        # Wake word detected
+        if WAKE_WORD in text:
+            speak("Yes?")
+
+            retries = 0
             while retries < MAX_RETRIES:
-                command = listen(timeout=6, phrase_time_limit=8)
+                command = listen(timeout=8)
+
                 if command:
                     parse_command(command)
                     break
                 else:
                     retries += 1
-                    speak("I didn't catch that. Please repeat.")
+                    if retries < MAX_RETRIES:
+                        speak("Please repeat.")
+                        time.sleep(1)
+                    else:
+                        speak("Going back to sleep.")
 
         time.sleep(0.3)
 
@@ -162,5 +178,6 @@ if __name__ == "__main__":
 """Problems faced during this project 
 -> Some major modules like speech_recognition and pyttsx3 might not work 
 """
+
 
 
