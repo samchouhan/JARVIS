@@ -41,10 +41,18 @@ if voices:
 
 def speak(text):
     print("Jarvis:", text)
-    tts.say(text)
-    tts.runAndWait()
-    time.sleep(0.5)   # ← add this line
 
+    engine = pyttsx3.init(driverName='sapi5')
+    engine.setProperty("rate", VOICE_RATE)
+    engine.setProperty("volume", VOICE_VOLUME)
+
+    voices = engine.getProperty("voices")
+    if voices:
+        engine.setProperty("voice", voices[0].id)
+
+    engine.say(text)
+    engine.runAndWait()
+    engine.stop()
 def log_command(cmd):
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(f"{datetime.datetime.now()} - {cmd}\n")
@@ -178,6 +186,7 @@ if __name__ == "__main__":
 """Problems faced during this project 
 -> Some major modules like speech_recognition and pyttsx3 might not work 
 """
+
 
 
 
