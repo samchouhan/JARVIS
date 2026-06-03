@@ -1,0 +1,10 @@
+###
+
+Problems / Challenges while building jarvis 
+
+###
+
+Making libraries work - 
+.Some libraries like pyttsx3 and speech_recognition make it difficult to work with as they either have 
+poor updates or not accessible 
+
