@@ -30,3 +30,14 @@ pyttsx3
 datetime
 webbrowser
 os
+
+This tech stack is reponsible for JARVIS's abilities 
+
+speech_recognition  ---	     Converts speech → text
+pyttsx3	            ---      Converts text → speech
+datetime	          ---      Gets current time and date
+webbrowser	       ---       Opens websites
+wikipedia	         ---       Searches Wikipedia
+pywhatkit	         ---       Plays YouTube videos
+sys	               ---       Allows program exit
+time	             ---       Delays execution
