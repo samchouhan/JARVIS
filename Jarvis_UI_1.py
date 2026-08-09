@@ -44,7 +44,7 @@ class JarvisUI:
         self.canvas.pack()
 
         # Initial state
-        self.state = "sleeping"
+        self.state = "listening"
 
         # Animation variables
         self.angle = 0
