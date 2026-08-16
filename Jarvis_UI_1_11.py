@@ -1,3 +1,4 @@
+#This version design of Jarvis consists of manual keysetups and retro style design
 import math
 import random
 import time
